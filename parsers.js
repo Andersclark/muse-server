@@ -1,18 +1,5 @@
-const history = []
-let lastPrint = Date.now();
-
 export function parseMuseData(raw) {
-  // if (raw.electrode == 0) {
-  //   const average = getAverage(raw.samples)
-  //   history.push(average)
-  //   // if (Date.now() - lastPrint > 1000) {
-  //   //   console.log("MIN:", Math.min(...history))
-  //   //   console.log("MAX:", Math.max(...history))
-  //   //   lastPrint = Date.now();
-  //   // }
-  //   return `${raw.electrode} ${museToMidi(average)}`
-  // }
-  return null;
+  return raw;
 }
 
 function getAverage(values){
@@ -20,9 +7,8 @@ function getAverage(values){
   return sum/values.length
 }
 
-//MIDI is 0-127,
-const museToMidiMultiplier = 127/400
-const museToPositiveOffset = 200
+const museToMidiMultiplier = 127/2000
+const museToPositiveOffset = 1000
 
 const museElectrodeMap = {
   TP9: "",
@@ -32,6 +18,6 @@ const museElectrodeMap = {
 }
 
 export function museToMidi(museValue) {
-  return museValue.toFixed(0);
+  return (museValue + museToPositiveOffset) * museToMidiMultiplier;
 }
 

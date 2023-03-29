@@ -1,5 +1,6 @@
 import OSC from "osc-js";
 import { TARGET_ADDRESS, TARGET_PORT } from "./config.js";
+import log from "./logger.js";
 
 const OSC_PARAMS = {
   type: 'udp4',         // @param {string} 'udp4' or 'udp6'
@@ -23,7 +24,7 @@ const osc = new OSC({
 // osc.on("*", message => console.log("[OSC ANY]", message))
 
 export function sendOSC(value){
-  const message = new OSC.Message("/muse", value);
+  const message = new OSC.Message([value.electrode], ...value.samples);
   osc.send(message);
-  console.log("[OSC]:", message)
+  log("OSC", "sent", message)
 }
