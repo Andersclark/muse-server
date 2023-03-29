@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "module": "",
   "type": "module",
-  "description": "",
-  "main": "udp.js",
+  "description": "A server to bridge the connection between a Muse-client and whatever needs to receive the data",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js --ignore logs/",
     "start": "node server.js"
